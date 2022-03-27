@@ -8,7 +8,7 @@ import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 public class RFrogEntity  extends FrogEntity {
-    public final boolean IMMUNE_TO_FIRE = false;
+    public final boolean LIKES_LAVA = false;
     public final ItemStack BREEDING_ITEM = Items.SLIME_BALL.getDefaultStack();
     public final boolean HAS_GLOW_FEATURE = false;
 
@@ -23,7 +23,7 @@ public class RFrogEntity  extends FrogEntity {
 
     @Override
     public boolean isOnFire() {
-        return IMMUNE_TO_FIRE;
+        return LIKES_LAVA;
     }
 
     @Override
