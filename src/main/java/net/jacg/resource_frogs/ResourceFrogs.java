@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.jacg.resource_frogs.frog.RFrogEntity;
+import net.jacg.resource_frogs.item.FrogNet;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -33,12 +34,15 @@ public class ResourceFrogs implements ModInitializer {
     public static final FabricLoader LOADER = FabricLoader.getInstance();
 
     public static List<EntityType<RFrogEntity>> FROG_LIST = new ArrayList<>();
+
+    public static final Item FROG_NET = Registry.register(Registry.ITEM, id("frog_net"), new FrogNet(new Item.Settings().maxCount(1)));
     @Override
     public void onInitialize() {
         File[] files = FabricLoader.getInstance().getConfigDir().resolve("resource_frogs/frogs").toFile().listFiles();
         if (files != null) {
             for (File file : files) {
                 try {
+
                     registerFrog(FilenameUtils.removeExtension(file.getName().toLowerCase(Locale.ENGLISH)));
                 } catch (Exception e) {
                     LOGGER.warn("Exception when registering frogs. " + e.getMessage());
@@ -56,11 +60,10 @@ public class ResourceFrogs implements ModInitializer {
                 FabricEntityTypeBuilder
                         .create(SpawnGroup.CREATURE, RFrogEntity::new)
                         .dimensions(new EntityDimensions(0.5f, 0.5f, true))
-                        .trackRangeBlocks(10)
                         .build());
 
         FabricDefaultAttributeRegistry.register(frog, FrogEntity.createFrogAttributes());
-        registerSpawnEgg(name, frog, 12895428, 11382189);
+        registerSpawnEgg(name + "spawn_egg", frog, 12895428, 11382189);
         FROG_LIST.add(frog);
     }
 

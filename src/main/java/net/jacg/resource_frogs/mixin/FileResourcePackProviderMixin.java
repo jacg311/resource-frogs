@@ -17,6 +17,9 @@ import java.util.function.Consumer;
 public class FileResourcePackProviderMixin {
     @Inject(method = "register", at = @At("HEAD"))
     private void register(Consumer<ResourcePackProfile> profileAdder, ResourcePackProfile.Factory factory, CallbackInfo ci) {
+        // let minecraft discover the textures.
+        // first check if path exists and can be read.
+        // in this case the /textures folder is the actual resourcepack folder since we dont care about the rest of the files.
         File texturePath = ResourceFrogs.LOADER.getConfigDir().resolve("resource_frogs/textures").toFile();
         if (texturePath.exists() && texturePath.canRead()) {
             profileAdder.accept(ResourcePackProfile.of(
@@ -24,8 +27,8 @@ public class FileResourcePackProviderMixin {
                     true,
                     () -> new RFDirectoryResourcePack(texturePath),
                     factory,
-                    ResourcePackProfile.InsertionPosition.TOP,
-                    ResourcePackSource.PACK_SOURCE_BUILTIN));
+                    ResourcePackProfile.InsertionPosition.TOP, // ensure position of pack
+                    ResourcePackSource.PACK_SOURCE_BUILTIN));  // make it not removable
         }
     }
 }
