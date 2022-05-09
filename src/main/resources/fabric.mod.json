@@ -3,9 +3,8 @@
   "id": "resource_frogs",
   "version": "${version}",
   "name": "Resource Frogs",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "description": "A ",
+  "authors": ["jacg", "technoalli3"],
   "license": "MIT",
   "icon": "assets/resource_frogs/icon.png",
   "environment": "*",
@@ -21,8 +20,8 @@
     "resource_frogs.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.4",
     "fabric": "*",
-    "minecraft": "1.19-alpha.22.12.a"
+    "minecraft": "1.19-alpha.22.18.a"
   }
 }

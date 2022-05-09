@@ -5,22 +5,15 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.loader.api.FabricLoader;
+import net.jacg.resource_frogs.config.FrogConfig;
 import net.jacg.resource_frogs.frog.RFrogEntity;
 import net.jacg.resource_frogs.frog.RFrogEntityModel;
 import net.jacg.resource_frogs.frog.RFrogEntityRenderer;
-import net.minecraft.client.MinecraftClient;
+import net.jacg.resource_frogs.gui.FrogPediaScreen;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.texture.NativeImage;
-import net.minecraft.client.texture.NativeImageBackedTexture;
-import net.minecraft.client.texture.TextureManager;
 import net.minecraft.entity.EntityType;
-import org.apache.commons.lang3.Validate;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Locale;
+import net.minecraft.util.Pair;
 
 @Environment(EnvType.CLIENT)
 public class ResourceFrogsClient implements ClientModInitializer {
@@ -28,10 +21,11 @@ public class ResourceFrogsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        HandledScreens.register(ResourceFrogs.FROGPEDIA_SCREENHANDLER, FrogPediaScreen::new);
         EntityModelLayerRegistry.registerModelLayer(MODEL_FROG_LAYER, RFrogEntityModel::getTexturedModelData);
 
-        for (EntityType<RFrogEntity> frogEntity : ResourceFrogs.FROG_LIST) {
-            EntityRendererRegistry.register(frogEntity, RFrogEntityRenderer::new);
+        for (Pair<EntityType<RFrogEntity>, FrogConfig> pair : ResourceFrogs.FROG_LIST) {
+            EntityRendererRegistry.register(pair.getLeft(), ctx -> new RFrogEntityRenderer(ctx, pair));
         }
     }
 }

@@ -1,32 +1,38 @@
 package net.jacg.resource_frogs.frog;
 
-import com.mojang.serialization.Dynamic;
+import net.jacg.resource_frogs.config.FrogConfig;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.FrogEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class RFrogEntity  extends FrogEntity {
-    public final boolean LIKES_LAVA = false;
-    public final ItemStack BREEDING_ITEM = Items.SLIME_BALL.getDefaultStack();
-    public final boolean HAS_GLOW_FEATURE = true;
+    public final boolean LIKES_LAVA;
+    public final Identifier BREEDING_ITEM;
+    public final boolean HAS_GLOW_FEATURE;
 
-    public RFrogEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+    public RFrogEntity(EntityType<? extends AnimalEntity> entityType, World world, FrogConfig config) {
         super(entityType, world);
+        this.LIKES_LAVA = config.likesLava;
+        this.BREEDING_ITEM = new Identifier(config.breedingItem);
+        this.HAS_GLOW_FEATURE = config.hasGlowFeature;
     }
 
     @Override
-    public boolean isOnFire() {
+    public boolean isFireImmune() {
         return LIKES_LAVA;
     }
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        if (BREEDING_ITEM == null || stack == null) return false;
-        return BREEDING_ITEM.isItemEqual(stack);
+        Item item = Registry.ITEM.get(BREEDING_ITEM);
+        if (item == Blocks.AIR.asItem() || stack == null) return false;
+        return item == stack.getItem();
     }
 
     //@Override

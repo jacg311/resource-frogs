@@ -64,7 +64,6 @@ public class RFDirectoryResourcePack extends DirectoryResourcePack {
     @Override
     public Collection<Identifier> findResources(ResourceType type, String namespace, String prefix, Predicate<Identifier> allowedPathPredicate) {
         List<Identifier> identifiers = new ArrayList<>();
-        System.out.println(prefix);
         /* ignore everything that arent client resources or that are fonts.
          * no need to check for those because they cant exist in this context
         */
