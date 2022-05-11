@@ -18,6 +18,6 @@ public class RFrogFeatureRenderer extends EyesFeatureRenderer<RFrogEntity, RFrog
 
     @Override
     public RenderLayer getEyesTexture() {
-        return RenderLayer.getEyes(ResourceFrogs.id(frogName + "_glow"));
+        return RenderLayer.getEyes(ResourceFrogs.id("textures/" + frogName + "_glow.png"));
     }
 }

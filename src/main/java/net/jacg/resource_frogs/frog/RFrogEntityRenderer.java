@@ -19,6 +19,6 @@ public class RFrogEntityRenderer extends MobEntityRenderer<RFrogEntity, RFrogEnt
 
     @Override
     public Identifier getTexture(RFrogEntity entity) {
-        return ResourceFrogs.id(entity.getType().getUntranslatedName());
+        return ResourceFrogs.id("textures/" + entity.getType().getUntranslatedName() + ".png");
     }
 }

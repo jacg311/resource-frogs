@@ -14,9 +14,9 @@ import net.minecraft.util.math.Vec3f;
 public class RFrogEntityModel<T extends RFrogEntity>
         extends SinglePartEntityModel<T> {
     private static final Vec3f direction = new Vec3f();
-    private final ModelPart root;
-    private final ModelPart body;
-    private final ModelPart head;
+    public final ModelPart root;
+    public final ModelPart body;
+    public final ModelPart head;
     private final ModelPart eyes;
     private final ModelPart tongue;
     private final ModelPart leftArm;
@@ -76,19 +76,5 @@ public class RFrogEntityModel<T extends RFrogEntity>
         this.method_43781(baseFrogEntity.swimmingAnimationState, FrogAnimations.SWIMMING);
         this.method_43781(baseFrogEntity.idlingInWaterAnimationState, FrogAnimations.IDLING_IN_WATER);
         this.croakingBody.visible = baseFrogEntity.croakingAnimationState.isRunning();
-    }
-
-    public void setRootPitch(float pitch) {
-        this.root.pitch = pitch;
-    }
-
-    public void setRootYaw(float yaw) {
-        this.root.yaw = yaw;
-    }
-
-    public void printPivot() {
-        System.out.println(this.root.pivotX);
-        System.out.println(this.root.pivotY);
-        System.out.println(this.root.pivotZ);
     }
 }

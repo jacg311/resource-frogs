@@ -1,0 +1,8 @@
+{
+    "resource_frogs.gui.frogpedia": "Frogpedia",
+
+    "item.resource_frogs.frogpedia": "Frogpedia",
+    "item.resource_frogs.frog_net": "Frog Net",
+
+    "itemGroup.resource_frogs.items": "Resource Frogs"
+}

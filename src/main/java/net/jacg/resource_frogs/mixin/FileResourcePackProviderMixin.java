@@ -10,25 +10,22 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.util.function.Consumer;
 
 @Mixin(FileResourcePackProvider.class)
 public class FileResourcePackProviderMixin {
     @Inject(method = "register", at = @At("HEAD"))
-    private void register(Consumer<ResourcePackProfile> profileAdder, ResourcePackProfile.Factory factory, CallbackInfo ci) {
-        // let minecraft discover the textures.
-        // first check if path exists and can be read.
-        // in this case the /textures folder is the actual resourcepack folder since we dont care about the rest of the files.
-        File texturePath = ResourceFrogs.LOADER.getConfigDir().resolve("resource_frogs/textures").toFile();
-        if (texturePath.exists() && texturePath.canRead()) {
+    private void resource_frogs$register(Consumer<ResourcePackProfile> profileAdder, ResourcePackProfile.Factory factory, CallbackInfo ci) {
+        Path texturePath = ResourceFrogs.LOADER.getConfigDir().resolve(ResourceFrogs.MOD_ID);
+        if (texturePath.toFile().exists()) {
             profileAdder.accept(ResourcePackProfile.of(
                     ResourceFrogs.MOD_ID,
                     true,
-                    () -> new RFDirectoryResourcePack(texturePath),
+                    () -> new RFDirectoryResourcePack(texturePath, null),
                     factory,
-                    ResourcePackProfile.InsertionPosition.TOP, // ensure position of pack
-                    ResourcePackSource.PACK_SOURCE_BUILTIN));  // make it not removable
+                    ResourcePackProfile.InsertionPosition.TOP,
+                    ResourcePackSource.PACK_SOURCE_BUILTIN));
         }
     }
 }
