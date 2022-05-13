@@ -34,6 +34,7 @@ public class ConfigUtil {
             return ResourceFrogs.GSON.fromJson(scanner.next(), RFConfig.class);
         }
         catch (FileNotFoundException e) {
+            ResourceFrogs.LOGGER.error("Error while reading file: " + e);
             return new RFConfig();
         }
     }

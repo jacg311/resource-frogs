@@ -28,7 +28,13 @@ public class RFDirectoryResourcePack extends DirectoryResourcePack {
         name = name.replaceFirst("assets/resource_frogs/", "");
         File file = new File(this.base, name);
         try {
-            if (file.isFile() && DirectoryResourcePack.isValidPath(file, name)) return true;
+            if (name.startsWith("models/item/") && name.endsWith("egg.json")) {
+                return true;
+            }
+
+            if (file.isFile() && DirectoryResourcePack.isValidPath(file, name)) {
+                return true;
+            }
         } catch (IOException ignored) {
         }
 
@@ -38,6 +44,11 @@ public class RFDirectoryResourcePack extends DirectoryResourcePack {
     @Override
     protected InputStream openFile(String name) throws IOException {
         name = name.replaceFirst("assets/resource_frogs/", "");
+
+        if (name.startsWith("models/item/") && name.endsWith("egg.json")) {
+            return new ByteArrayInputStream("{\"parent\": \"item/template_spawn_egg\"}".getBytes(StandardCharsets.UTF_8));
+        }
+
         return new FileInputStream(new File(this.base, name));
     }
 

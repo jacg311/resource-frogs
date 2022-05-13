@@ -12,18 +12,14 @@ import net.jacg.resource_frogs.config.FrogConfig;
 import net.jacg.resource_frogs.config.RFConfig;
 import net.jacg.resource_frogs.frog.RFrogEntity;
 import net.jacg.resource_frogs.gui.FrogPediaScreenHandler;
-import net.jacg.resource_frogs.item.FrogNet;
-import net.jacg.resource_frogs.item.FrogPedia;
 import net.jacg.resource_frogs.item.RFItemRegistry;
 import net.jacg.resource_frogs.util.ConfigUtil;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.passive.FrogEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
@@ -61,18 +57,19 @@ public class ResourceFrogs implements ModInitializer {
 
         File[] files = FabricLoader.getInstance().getConfigDir().resolve(MOD_ID).resolve("frogs").toFile().listFiles();
 
-        ResourceFrogs.LOGGER.info("Trying to register " + files.length + " frogs");
-
-        for (File file : files) {
-            try (Scanner scanner = new Scanner(file)){
-                scanner.useDelimiter("\\Z");
-                FrogConfig config = GSON.fromJson(scanner.next(), FrogConfig.class);
-                registerFrog(FilenameUtils.removeExtension(file.getName().toLowerCase(Locale.ENGLISH)), config);
-            } catch (Exception e) {
-                LOGGER.error("Exception when registering frogs. " + e.getMessage());
+        if (files == null) ResourceFrogs.LOGGER.warn("No frogs to register found in " + LOADER.getConfigDir().resolve(MOD_ID).resolve("frogs"));
+        else {
+            for (File file : files) {
+                try (Scanner scanner = new Scanner(file)){
+                    scanner.useDelimiter("\\Z");
+                    FrogConfig config = GSON.fromJson(scanner.next(), FrogConfig.class);
+                    registerFrog(FilenameUtils.removeExtension(file.getName().toLowerCase(Locale.ENGLISH)), config);
+                } catch (Exception e) {
+                    LOGGER.error("Exception when registering frogs. " + e.getMessage());
+                }
             }
-        }
 
+        }
         RFItemRegistry.registerItems();
     }
 
@@ -88,7 +85,7 @@ public class ResourceFrogs implements ModInitializer {
                         .build());
 
         FabricDefaultAttributeRegistry.register(frog, FrogEntity.createFrogAttributes());
-        RFItemRegistry.registerSpawnEgg(name + "_spawn_egg", frog, 12895428, 11382189);
+        RFItemRegistry.registerSpawnEgg(name + "_spawn_egg", frog, config.spawnEgg.primaryColor, config.spawnEgg.secondaryColor);
         FROG_LIST.add(new Pair<>(frog, config));
     }
 }

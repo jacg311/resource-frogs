@@ -66,15 +66,15 @@ public class RFrogEntityModel<T extends RFrogEntity>
     }
 
     @Override
-    public void setAngles(T baseFrogEntity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(T frogEntity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         this.getPart().traverse().forEach(ModelPart::resetTransform);
-        float k = Math.min((float)baseFrogEntity.getVelocity().lengthSquared() * 200.0F, 8.0F);
-        this.method_43781(baseFrogEntity.longJumpingAnimationState, FrogAnimations.LONG_JUMPING);
-        this.method_43781(baseFrogEntity.croakingAnimationState, FrogAnimations.CROAKING);
-        this.method_43781(baseFrogEntity.usingTongueAnimationState, FrogAnimations.USING_TONGUE);
-        this.method_43782(baseFrogEntity.walkingAnimationState, FrogAnimations.WALKING, k);
-        this.method_43781(baseFrogEntity.swimmingAnimationState, FrogAnimations.SWIMMING);
-        this.method_43781(baseFrogEntity.idlingInWaterAnimationState, FrogAnimations.IDLING_IN_WATER);
-        this.croakingBody.visible = baseFrogEntity.croakingAnimationState.isRunning();
+        float k = Math.min((float)frogEntity.getVelocity().lengthSquared() * 200.0F, 8.0F);
+        this.updateAnimation(frogEntity.longJumpingAnimationState, FrogAnimations.LONG_JUMPING, animationProgress);
+        this.updateAnimation(frogEntity.croakingAnimationState, FrogAnimations.CROAKING, animationProgress);
+        this.updateAnimation(frogEntity.usingTongueAnimationState, FrogAnimations.USING_TONGUE, animationProgress);
+        this.updateAnimation(frogEntity.walkingAnimationState, FrogAnimations.WALKING, animationProgress, k);
+        this.updateAnimation(frogEntity.swimmingAnimationState, FrogAnimations.SWIMMING, animationProgress);
+        this.updateAnimation(frogEntity.idlingInWaterAnimationState, FrogAnimations.IDLING_IN_WATER, animationProgress);
+        this.croakingBody.visible = frogEntity.croakingAnimationState.isRunning();
     }
 }
