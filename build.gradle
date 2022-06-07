@@ -8,6 +8,7 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+    maven { url "https://maven.terraformersmc.com/releases"}
 }
 
 dependencies {
@@ -16,6 +17,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 }
 
 processResources {
@@ -23,7 +26,10 @@ processResources {
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand  "version": project.version,
+                "loader_version": project.loader_version,
+                "fabric_version": project.fabric_version,
+                "minecraft_version": project.minecraft_version
     }
 }
 

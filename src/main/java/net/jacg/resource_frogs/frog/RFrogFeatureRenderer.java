@@ -6,12 +6,13 @@ import net.jacg.resource_frogs.ResourceFrogs;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.feature.EyesFeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
+import net.minecraft.client.render.entity.model.FrogEntityModel;
 
 @Environment(value= EnvType.CLIENT)
-public class RFrogFeatureRenderer extends EyesFeatureRenderer<RFrogEntity, RFrogEntityModel<RFrogEntity>> {
+public class RFrogFeatureRenderer extends EyesFeatureRenderer<RFrogEntity, FrogEntityModel<RFrogEntity>> {
     private final String frogName;
 
-    public RFrogFeatureRenderer(FeatureRendererContext<RFrogEntity, RFrogEntityModel<RFrogEntity>> featureRendererContext, String frogName) {
+    public RFrogFeatureRenderer(FeatureRendererContext<RFrogEntity, FrogEntityModel<RFrogEntity>> featureRendererContext, String frogName) {
         super(featureRendererContext);
         this.frogName = frogName;
     }

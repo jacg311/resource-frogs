@@ -3,10 +3,9 @@
   "id": "resource_frogs",
   "version": "${version}",
   "name": "Resource Frogs",
-  "description": "A ",
+  "description": "A mod that adds new Frog Variants that give you resources!",
   "authors": ["jacg", "technoalli3"],
   "license": "MIT",
-  "icon": "assets/resource_frogs/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
@@ -20,8 +19,8 @@
     "resource_frogs.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.4",
-    "fabric": "*",
-    "minecraft": "1.19-alpha.22.19.a"
+    "fabricloader": ">=${loader_version}",
+    "fabric": ">=${fabric_version}",
+    "minecraft": "~${minecraft_version}"
   }
 }
