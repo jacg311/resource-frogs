@@ -4,8 +4,9 @@
   "version": "${version}",
   "name": "Resource Frogs",
   "description": "A mod that adds new Frog Variants that give you resources!",
-  "authors": ["jacg", "technoalli3"],
+  "authors": ["jacg"],
   "license": "MIT",
+  "contributors": ["technoalli3"],
   "environment": "*",
   "entrypoints": {
     "client": [

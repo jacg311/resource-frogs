@@ -9,6 +9,7 @@ import net.jacg.resource_frogs.config.FrogConfig;
 import net.jacg.resource_frogs.frog.RFrogEntity;
 import net.jacg.resource_frogs.frog.RFrogEntityRenderer;
 import net.jacg.resource_frogs.gui.FrogPediaScreen;
+import net.jacg.resource_frogs.util.Util;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.entity.model.FrogEntityModel;
@@ -17,7 +18,7 @@ import net.minecraft.util.Pair;
 
 @Environment(EnvType.CLIENT)
 public class ResourceFrogsClient implements ClientModInitializer {
-    public static final EntityModelLayer MODEL_FROG_LAYER = new EntityModelLayer(ResourceFrogs.id("frog"), "main");
+    public static final EntityModelLayer MODEL_FROG_LAYER = new EntityModelLayer(Util.id("frog"), "main");
 
     @Override
     public void onInitializeClient() {

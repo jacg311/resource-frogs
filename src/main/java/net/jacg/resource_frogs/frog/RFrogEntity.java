@@ -11,28 +11,22 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-public class RFrogEntity  extends FrogEntity {
-    public final boolean LIKES_LAVA;
-    public final Identifier BREEDING_ITEM;
-    public final boolean HAS_GLOW_FEATURE;
+public class RFrogEntity extends FrogEntity {
+    private final FrogConfig config;
 
     public RFrogEntity(EntityType<? extends AnimalEntity> entityType, World world, FrogConfig config) {
         super(entityType, world);
-        this.LIKES_LAVA = config.likesLava;
-        this.BREEDING_ITEM = new Identifier(config.breedingItem);
-        this.HAS_GLOW_FEATURE = config.hasGlowFeature;
+        this.config = config;
     }
 
     @Override
     public boolean isFireImmune() {
-        return LIKES_LAVA;
+        return config.likesLava;
     }
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        Item item = Registry.ITEM.get(BREEDING_ITEM);
-        if (item == Blocks.AIR.asItem() || stack == null) return false;
-        return item == stack.getItem();
+        return config.breedingItem.test(stack);
     }
 
     //@Override

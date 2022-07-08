@@ -1,5 +1,6 @@
 package net.jacg.resource_frogs.mixin;
 
+import net.fabricmc.loader.api.FabricLoader;
 import net.jacg.resource_frogs.ResourceFrogs;
 import net.jacg.resource_frogs.util.RFDirectoryResourcePack;
 import net.minecraft.resource.FileResourcePackProvider;
@@ -17,7 +18,9 @@ import java.util.function.Consumer;
 public class FileResourcePackProviderMixin {
     @Inject(method = "register", at = @At("HEAD"))
     private void resource_frogs$register(Consumer<ResourcePackProfile> profileAdder, ResourcePackProfile.Factory factory, CallbackInfo ci) {
-        Path texturePath = ResourceFrogs.LOADER.getConfigDir().resolve(ResourceFrogs.MOD_ID);
+        Path texturePath = FabricLoader.getInstance()
+                .getConfigDir()
+                .resolve(ResourceFrogs.MOD_ID);
         if (texturePath.toFile().exists()) {
             profileAdder.accept(ResourcePackProfile.of(
                     ResourceFrogs.MOD_ID,

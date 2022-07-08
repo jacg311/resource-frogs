@@ -3,16 +3,26 @@
 Resource Frogs is a mod that adds data driven frogs to the game that can produce resources for you!
 
 ## Adding new frogs
+
 On first startup, the mod creates several folders where your custom Resource Frogs will be defined.\
 The configuration files for the frogs are in the folder "/config/resource_frogs/frogs".\
-Copy Paste this example configuration and tweak it to your liking.\
-```
+You can Copy-Paste this example configuration and tweak it to your liking.\
+
+```json5
 {
   "likes_lava": false,
+  "passive": false,
+  "has_glow_feature": false,
+  "eating_cooldown": 600,
   "breeding_item": "minecraft:raw_copper",
-  "has_glow_feature": false
+  "food_item": "minecraft:raw_copper",
+  "spawn_egg": {
+    "primary_color": 12345678,
+    "secondary_color": 87654321
+  }
 }
 ```
+
 Create a new file with the ID of the frog inside the mentioned folder. Example Name: redstone_frog.json\
 This alone is enough to create a new frog! A spawn egg will also be added automatically.\
 \
@@ -27,4 +37,20 @@ This feature renders the _glow texture as an Overlay, similar to Enderman or Spi
 The last folder "/config/resource_frogs/lang" is for the language files for your frogs and spawn eggs.\
 This works exactly like regular minecraft language files.
 
-_More extensive docs are in the works_
+All fields in the config have default values.\
+That means you can leave out any field and the mod will automatically fill it anyway.\
+Here's a list with all of them with a bit of explanation:
+```json5
+{
+    "likes_lava": false, // if the frog is immune to lava
+    "passive": false, // if the frog doesn't need items to produce something
+    "has_glow_feature": false, // if the frog should have a glowing texture
+    "eating_cooldown": 600, // time in ticks inbetween feeding
+    "breeding_item": "minecraft:air", // identifier of item used to breed the frog, may be an array of identifiers
+    "food_item": "minecraft:air", // identifier of item the frog will consume, may be an array of identifiers
+    "spawn_egg": {
+        "primary_color": 12345678, // color in decimal, may also be hex -> 0xbc614e
+        "secondary_color": 87654321 // color in decimal, may also be hex -> 0x5397fb1
+    }
+}
+```

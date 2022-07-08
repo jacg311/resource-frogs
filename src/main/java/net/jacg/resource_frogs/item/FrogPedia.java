@@ -26,7 +26,6 @@ public class FrogPedia extends Item implements NamedScreenHandlerFactory {
         return TypedActionResult.success(user.getStackInHand(hand));
     }
 
-
     @Override
     public Text getDisplayName() {
         return Text.translatable("resource_frogs.gui.frogpedia");

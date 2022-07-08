@@ -12,5 +12,6 @@ public class RFConfig {
         this.maxEnclosureDepth = maxDepth;
     }
 
-    public RFConfig() {}
+    public RFConfig() {
+    }
 }
