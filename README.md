@@ -46,8 +46,8 @@ Here's a list with all of them with a bit of explanation:
     "passive": false, // if the frog doesn't need items to produce something
     "has_glow_feature": false, // if the frog should have a glowing texture
     "eating_cooldown": 600, // time in ticks inbetween feeding
-    "breeding_item": "minecraft:air", // identifier of item used to breed the frog, may be an array of identifiers
-    "food_item": "minecraft:air", // identifier of item the frog will consume, may be an array of identifiers
+    "breeding_item": "minecraft:air", // identifier of item used to breed the frog
+    "food_item": "minecraft:air", // identifier of item the frog will consume
     "spawn_egg": {
         "primary_color": 12345678, // color in decimal, may also be hex -> 0xbc614e
         "secondary_color": 87654321 // color in decimal, may also be hex -> 0x5397fb1
