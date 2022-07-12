@@ -13,7 +13,6 @@ import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.MemoryModuleState;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.ai.brain.task.*;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -35,9 +34,5 @@ public class RFrogBrain {
 
     private static boolean isNotBreeding(RFrogEntity frog) {
         return !LookTargetUtil.hasBreedTarget(frog);
-    }
-
-    public static Ingredient getTemptItems() {
-        return RFrogEntity.SLIME_BALL;
     }
 }

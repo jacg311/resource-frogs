@@ -22,11 +22,9 @@ public class ResourceFrogsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        HandledScreens.register(ResourceFrogs.FROGPEDIA_SCREENHANDLER, FrogPediaScreen::new);
         EntityModelLayerRegistry.registerModelLayer(MODEL_FROG_LAYER, FrogEntityModel::getTexturedModelData);
-
-        for (Pair<EntityType<RFrogEntity>, FrogConfig> pair : ResourceFrogs.FROG_LIST) {
-            EntityRendererRegistry.register(pair.getLeft(), ctx -> new RFrogEntityRenderer(ctx, pair));
-        }
+        ResourceFrogs.FROG_CONFIG_HASH_MAP.forEach((type, config) -> {
+            EntityRendererRegistry.register(type, ctx -> new RFrogEntityRenderer(ctx, type.getUntranslatedName(), config.hasGlowfeature));
+        });
     }
 }

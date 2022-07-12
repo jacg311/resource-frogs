@@ -7,20 +7,21 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.feature.EyesFeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.FrogEntityModel;
+import net.minecraft.util.Identifier;
 
 @Environment(value = EnvType.CLIENT)
 public class RFrogFeatureRenderer extends EyesFeatureRenderer<RFrogEntity, FrogEntityModel<RFrogEntity>> {
-    private final String frogName;
+    private final Identifier glowTexture;
 
     public RFrogFeatureRenderer(
-            FeatureRendererContext<RFrogEntity, FrogEntityModel<RFrogEntity>> featureRendererContext, String frogName
+            FeatureRendererContext<RFrogEntity, FrogEntityModel<RFrogEntity>> featureRendererContext, String glowTexture
     ) {
         super(featureRendererContext);
-        this.frogName = frogName;
+        this.glowTexture = Util.id("textures/" + glowTexture + "_glow.png");
     }
 
     @Override
     public RenderLayer getEyesTexture() {
-        return RenderLayer.getEyes(Util.id("textures/" + frogName + "_glow.png"));
+        return RenderLayer.getEyes(glowTexture);
     }
 }

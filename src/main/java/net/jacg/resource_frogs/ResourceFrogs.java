@@ -13,20 +13,19 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.util.Pair;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ResourceFrogs implements ModInitializer {
     public static final String MOD_ID = "resource_frogs";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(Util.id("items"), () -> new ItemStack(RFItemRegistry.FROGPEDIA));
     public static RFConfig CONFIG;
-    public static List<Pair<EntityType<RFrogEntity>, FrogConfig>> FROG_LIST = new ArrayList<>();
+    public static final Map<EntityType<RFrogEntity>, FrogConfig> FROG_CONFIG_HASH_MAP = new HashMap<>();
     public static final ScreenHandlerType<FrogPediaScreenHandler> FROGPEDIA_SCREENHANDLER = Registry.register(Registry.SCREEN_HANDLER, Util.id("frogpedia"), new ScreenHandlerType<>(FrogPediaScreenHandler::new));
 
     @Override

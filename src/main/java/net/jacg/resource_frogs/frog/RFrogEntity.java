@@ -1,14 +1,10 @@
 package net.jacg.resource_frogs.frog;
 
 import net.jacg.resource_frogs.config.FrogConfig;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.FrogEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class RFrogEntity extends FrogEntity {

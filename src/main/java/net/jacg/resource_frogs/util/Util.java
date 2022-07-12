@@ -15,7 +15,6 @@ import net.minecraft.entity.passive.FrogEntity;
 import net.minecraft.item.Item;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.apache.commons.io.FilenameUtils;
@@ -23,6 +22,9 @@ import org.apache.commons.io.FilenameUtils;
 import java.io.File;
 import java.util.Locale;
 import java.util.Scanner;
+
+import static net.jacg.resource_frogs.ResourceFrogs.FROG_CONFIG_HASH_MAP;
+import static net.jacg.resource_frogs.ResourceFrogs.LOGGER;
 
 public class Util {
     public final static Jankson JANKSON = new Jankson.Builder()
@@ -54,7 +56,7 @@ public class Util {
 
         FabricDefaultAttributeRegistry.register(frog, FrogEntity.createFrogAttributes());
         RFItemRegistry.registerSpawnEgg(name + "_spawn_egg", frog, config.spawnEgg.primaryColor, config.spawnEgg.secondaryColor);
-        ResourceFrogs.FROG_LIST.add(new Pair<>(frog, config));
+        FROG_CONFIG_HASH_MAP.put(frog, config);
     }
 
     public static void findFrogsAndRegister() {
@@ -66,7 +68,7 @@ public class Util {
                 .listFiles();
 
         if (files == null) {
-            ResourceFrogs.LOGGER.warn("No frogs to register found in " + FabricLoader.getInstance()
+            LOGGER.warn("No frogs to register found in " + FabricLoader.getInstance()
                     .getConfigDir()
                     .resolve(ResourceFrogs.MOD_ID)
                     .resolve("frogs"));
@@ -80,7 +82,7 @@ public class Util {
                             .toLowerCase(Locale.ROOT)), config);
                 }
                 catch (Exception e) {
-                    ResourceFrogs.LOGGER.error("Exception when registering frogs. " + e.getMessage());
+                    LOGGER.error("Exception when registering frogs. " + e.getMessage());
                 }
             }
         }
