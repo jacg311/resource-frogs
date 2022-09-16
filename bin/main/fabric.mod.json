@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "resource_froge",
+  "version": "${version}",
+  "name": "Resource Froge",
+  "description": "A mod that adds new Froge Variants that give you resources!",
+  "authors": ["jacg"],
+  "license": "MIT",
+  "contributors": ["technoalli3"],
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.jacg.resource_frogs.ResourceFrogeClient"
+    ],
+    "main": [
+      "net.jacg.resource_frogs.ResourceFroge"
+    ]
+  },
+  "mixins": [
+    "resource_froge.mixins.json"
+  ],
+  "depends": {
+    "fabric": ">=${fabric_version}",
+    "minecraft": "~${minecraft_version}"
+  }
+}

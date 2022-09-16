@@ -1,0 +1,14 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:dripleaf",
+        "minecraft:big_dripleaf",
+        "minecraft:water",
+        "minecraft:lilypad",
+        "minecraft:grass",
+        "minecraft:slime_block",
+        "minecraft:magma_block",
+        "minecraft:mud",
+        "minecraft:moss_block"
+    ]
+}
