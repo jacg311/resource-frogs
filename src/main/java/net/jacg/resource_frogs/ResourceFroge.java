@@ -1,4 +1,4 @@
-package net.jacg.resource_frogs;
+package net.jacg.resource_froge;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -20,8 +20,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResourceFrogs implements ModInitializer {
-    public static final String MOD_ID = "resource_frogs";
+public class ResourceFroge implements ModInitializer {
+    public static final String MOD_ID = "resource_froge";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(Util.id("items"), () -> new ItemStack(RFItemRegistry.FROGPEDIA));
     public static RFConfig CONFIG;
